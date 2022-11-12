@@ -8,6 +8,7 @@ MomentoRetroalimentacionModulo3/
   - europarl-v7.es-en.en
   
   -NERData/
+  
       - dev
       - train
       - test
