@@ -12,7 +12,7 @@ MomentoRetroalimentacionModulo3
 │   │   dev
 │   │   train
 |   |   test
-|   |    train trunc
+|   |   train_trunc
 ```
 
 To run the code simple use this command
