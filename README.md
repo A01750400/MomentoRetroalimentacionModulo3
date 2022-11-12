@@ -6,6 +6,7 @@ MomentoRetroalimentacionModulo3/
   - Code files
   - europarl-v7.es-en.es
   - europarl-v7.es-en.en
+  
   -NERData/
       - dev
       - train
