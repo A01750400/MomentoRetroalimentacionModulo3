@@ -8,26 +8,34 @@ from flair.visual.training_curves import Plotter
 class NER:
 
     def __init__(self, *, useAllData: bool) -> None:
-        data_folder = './NERData'
+        self._useAllData = useAllData
+        self._data_folder = './NERData'
 
-        columns = {0: 'text', 1: 'ner'}
+        self._columns = {0: 'text', 1: 'ner'}
+        self._make_corpus()
+        self._tag_type = 'ner'
+        self._tag_dictionary = self._corpus.make_label_dictionary(label_type='ner')
+        self._initialize_embeddings()
+        self._initialize_sequence_tagger()
+        self._initialize_trainer()
+        self._run_training()
+        self._plot_results()
+
+
+    def _make_corpus(self):
         # 1. get the corpus
-        if useAllData:
+        if self._useAllData:
             train_file = 'train'
         else:
             train_file = 'train_trunc'
 
-        corpus: Corpus = ColumnCorpus(data_folder = data_folder, column_format = columns,
+        self._corpus: Corpus = ColumnCorpus(data_folder = self._data_folder, column_format = self._columns,
                                       train_file=train_file,
                                       test_file='test',
                                       dev_file='dev')
 
-        # 2. what tag do we want to predict?
-        tag_type = 'ner'
 
-        # 3. make the tag dictionary from the corpus
-        tag_dictionary = corpus.make_label_dictionary(label_type='ner')
-
+    def _initialize_embeddings(self):
         # 4. initialize each embedding we use
         embedding_types = [
 
@@ -42,26 +50,28 @@ class NER:
         ]
 
         # embedding stack consists of Flair and GloVe embeddings
-        embeddings = StackedEmbeddings(embeddings=embedding_types)
+        self._embeddings = StackedEmbeddings(embeddings=embedding_types)
 
-        # 5. initialize sequence tagger
 
-        tagger = SequenceTagger(hidden_size=256,
-                                embeddings=embeddings,
-                                tag_dictionary=tag_dictionary,
-                                tag_type=tag_type)
+    def _initialize_sequence_tagger(self):
+        self._tagger = SequenceTagger(hidden_size=256,
+                                embeddings=self._embeddings,
+                                tag_dictionary=self._tag_dictionary,
+                                tag_type=self._tag_type)
 
-        # 6. initialize trainer
 
-        trainer = ModelTrainer(tagger, corpus)
+    def _initialize_trainer(self):
+        self._trainer = ModelTrainer(self._tagger, self._corpus)
 
-        # 7. run training
-        trainer.train('resources/taggers/ner-english',
+
+    def _run_training(self):
+        self._trainer.train('resources/taggers/ner-english',
                       train_with_dev=True,
                       write_weights=True,
                       max_epochs=1)
 
 
+    def _plot_results(self):
         plotter = Plotter()
         plotter.plot_training_curves('resources/taggers/ner-english/loss.tsv')
         plotter.plot_weights('resources/taggers/ner-english/weights.txt')
