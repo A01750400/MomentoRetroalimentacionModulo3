@@ -1,6 +1,9 @@
 from flair.data import Corpus
 from flair.datasets.biomedical import ColumnCorpus
 from flair.embeddings import WordEmbeddings, StackedEmbeddings, FlairEmbeddings
+from flair.models import SequenceTagger
+from flair.trainers import ModelTrainer
+from flair.visual.training_curves import Plotter
 
 class NER:
 
@@ -42,7 +45,6 @@ class NER:
         embeddings = StackedEmbeddings(embeddings=embedding_types)
 
         # 5. initialize sequence tagger
-        from flair.models import SequenceTagger
 
         tagger = SequenceTagger(hidden_size=256,
                                 embeddings=embeddings,
@@ -50,7 +52,6 @@ class NER:
                                 tag_type=tag_type)
 
         # 6. initialize trainer
-        from flair.trainers import ModelTrainer
 
         trainer = ModelTrainer(tagger, corpus)
 
@@ -60,7 +61,6 @@ class NER:
                       write_weights=True,
                       max_epochs=1)
 
-        from flair.visual.training_curves import Plotter
 
         plotter = Plotter()
         plotter.plot_training_curves('resources/taggers/ner-english/loss.tsv')
