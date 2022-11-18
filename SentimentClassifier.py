@@ -1,5 +1,7 @@
 from pysentimiento import create_analyzer
 
+
+# shouldn't be double underscores for private methods: https://towardsdatascience.com/whats-the-meaning-of-single-and-double-underscores-in-python-3d27d57d6bd1
 class SentimentClassifier:
     '''
     A sentiment classifier implemented using the Pysentimiento
