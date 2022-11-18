@@ -2,9 +2,13 @@ from flair.data import Corpus
 from flair.datasets.biomedical import ColumnCorpus
 from flair.embeddings import WordEmbeddings, StackedEmbeddings, FlairEmbeddings
 
+# add some more methods with descriptive names to this class! you shouldnt do everything in the init function :) 
+# Good structuring helps others read, use, and maintain your code — it’s really critical for being able to work  on a team in industry! 
+# some examples: 
+# https://www.dataquest.io/blog/using-classes-in-python/ and https://www.geeksforgeeks.org/python-classes-and-objects/
 class NER:
 
-    def __init__(self, *, useAllData: bool) -> None:
+    def __init__(self, *, useAllData: bool) -> None: # naming should follow python naming conventions: https://google.github.io/styleguide/pyguide.html#316-naming and https://visualgit.readthedocs.io/en/latest/pages/naming_convention.html
         data_folder = './NERData'
 
         columns = {0: 'text', 1: 'ner'}
@@ -60,7 +64,7 @@ class NER:
                       write_weights=True,
                       max_epochs=1)
 
-        from flair.visual.training_curves import Plotter
+        from flair.visual.training_curves import Plotter # imports should go at top of file! imports: https://peps.python.org/pep-0008/#imports
 
         plotter = Plotter()
         plotter.plot_training_curves('resources/taggers/ner-english/loss.tsv')
