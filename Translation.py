@@ -44,10 +44,10 @@ class TranslatorComparer:
         input_txt = self._es[line_num]
         translation = self._google.translate(input_txt).split()
         self._scores['Google'].append(sentence_bleu(ref, translation))
-        print(translation, sentence_bleu(ref, translation))
+        #print(translation, sentence_bleu(ref, translation))
         translation = self._mymemory.translate(input_txt)
         self._scores['MyMemory'].append(sentence_bleu(ref, translation))
-        print(translation, sentence_bleu(ref, translation))
+        #print(translation, sentence_bleu(ref, translation))
         return True
 
     def run_comparisons(self):
