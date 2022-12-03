@@ -30,5 +30,9 @@ And then run with:
 python run.py
 ```
 No API Keys needed.
+
+Training Graph:
 ![alt text](training.png "Training Graph")
+
+Weights Graph:
 ![alt text](weights.png "Weights Graph")
