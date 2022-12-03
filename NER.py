@@ -23,7 +23,6 @@ class NER:
 
 
     def _make_corpus(self):
-        # 1. get the corpus
         if self._useAllData:
             train_file = 'train'
         else:
@@ -36,20 +35,15 @@ class NER:
 
 
     def _initialize_embeddings(self):
-        # 4. initialize each embedding we use
         embedding_types = [
 
-            # GloVe embeddings
             WordEmbeddings('glove'),
 
-            # contextual string embeddings, forward
             FlairEmbeddings('news-forward-fast'),
 
-            # contextual string embeddings, backward
             FlairEmbeddings('news-backward-fast'),
         ]
 
-        # embedding stack consists of Flair and GloVe embeddings
         self._embeddings = StackedEmbeddings(embeddings=embedding_types)
 
 
