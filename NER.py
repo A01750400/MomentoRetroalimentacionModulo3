@@ -83,7 +83,7 @@ class NER:
         self._trainer.train('resources/taggers/ner-english',
                       train_with_dev=True,
                       write_weights=True,
-                      max_epochs=1)
+                      max_epochs=5)
 
 
     def _plot_results(self):
