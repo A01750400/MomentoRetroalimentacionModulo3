@@ -9,6 +9,7 @@ ex1.classify_file("tiny_movie_reviews_dataset.txt")
 
 #Exercise 2
 print("------Excercise 2------")
+#Toggle the useAllData parameter to choose the amount of the training data to be used
 ex2 = NER(useAllData=False)
 
 #Exercise 3
