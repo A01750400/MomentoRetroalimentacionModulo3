@@ -19,7 +19,7 @@ MomentoRetroalimentacionModulo3
 
 The datasets can be found on the Google Drive link I added on the assignment's submission.
 
-Afterwards install the dependencies with:
+Afterwards install the dependencies with (I'd recommend using a venv):
 
 ```bash
 pip install -r requirements.txt
