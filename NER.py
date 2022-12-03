@@ -5,6 +5,8 @@ from flair.models import SequenceTagger
 from flair.trainers import ModelTrainer
 from flair.visual.training_curves import Plotter
 
+#Sourced from: https://huggingface.co/flair/ner-english-fast
+
 class NER:
     '''
     Wrapper object for the flair library
