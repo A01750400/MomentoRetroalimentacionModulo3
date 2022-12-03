@@ -4,7 +4,8 @@ from Translation import TranslatorComparer
 
 #Exercise 1
 print("------Excercise 1------")
-ex1 = SentimentClassifier("tiny_movie_reviews_dataset.txt")
+ex1 = SentimentClassifier()
+ex1.classify_file("tiny_movie_reviews_dataset.txt")
 
 #Exercise 2
 print("------Excercise 2------")

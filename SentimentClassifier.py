@@ -6,7 +6,7 @@ class SentimentClassifier:
     sentiment classifier model.
     '''
 
-    def __init__(self, filename: str):
+    def __init__(self):
         '''
         Creates an instance of a sentiment classifier,
         receives a filename from which it will source the
@@ -15,6 +15,8 @@ class SentimentClassifier:
         self._analyzer = create_analyzer(task="sentiment", lang="en")
         self._lines = []
         self._analyses = []
+
+    def classify_file(self, filename: str):
         self._read_txt(filename)
         self._analyze_sentences()
         self._output_analyses()
@@ -26,7 +28,7 @@ class SentimentClassifier:
         with open(filename) as file:
             self.__lines = [line.rstrip() for line in file]
 
-    def _analyze_sentence(self, sentence: str):
+    def analyze_sentence(self, sentence: str):
         '''
         Calls the analyzer's predict function with the line of text received.
         '''
@@ -37,7 +39,7 @@ class SentimentClassifier:
         Classifies each sentence from the text file.
         '''
         for sentence in self.__lines:
-            analisis = self._analyze_sentence(sentence)
+            analisis = self.analyze_sentence(sentence)
             result = analisis.output
             if result == 'POS':
                 res = 'POSITIVE'

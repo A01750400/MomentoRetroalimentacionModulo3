@@ -1,3 +1,9 @@
+# Datasets surpass Github's file size limit
+NERData/
+europarl*
+resources/
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
