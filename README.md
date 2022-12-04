@@ -34,5 +34,8 @@ No API Keys needed.
 Training Graph:
 ![alt text](training.png "Training Graph")
 
+Test Graph:
+![alt text](test.png "Training Graph")
+
 Weights Graph:
 ![alt text](weights.png "Weights Graph")
